@@ -14,7 +14,7 @@ function banner() {
 #
 #   
 EOF
-echo "Will be waiting for $TIME and then merge and deploy $BRANCH"
+echo "Will be merging $REPO $BRANCH into master and deploy it into $TARGET"
 }
 
 function last_build_number(){
@@ -50,4 +50,4 @@ function merge() {
   gh pr merge $BRANCH -m -R $REPO
 }
 
-merge && wait_for_build_to_be_done && deploy 
+banner && merge && wait_for_build_to_be_done && deploy 
